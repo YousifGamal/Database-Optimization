@@ -16,7 +16,7 @@ courses = ["Logic Design","Data Structures","Algorithms","Circuits I","Physics I
         "Computer Security","Consultation","Testing","Modeling","Pattern Recognition",
         "Web Development","Machine Learning","Image Processing","Compilers","OOP",
         ]
-courseIDs = list(range(0,40))
+courseIDs = list(range(1,41))
 
 def studentCourse(courseIDs):
     return random.sample(courseIDs,k=24)
