@@ -8,4 +8,7 @@ def Connect():
         password="password",
         database="college"
     )
+    #print(mydb.autocommit)
+    
     return mydb
+Connect()
