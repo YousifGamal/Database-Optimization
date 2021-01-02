@@ -1,13 +1,36 @@
 import names
 import random
 
-years = ["Prep","First","Second","Junior","Senior"]
 
-degrees = ["Teaching Assistant", "Professor","Assistant Professor",
+
+def studentCourse():
+    courseIDs = list(range(1,41))
+    return random.sample(courseIDs,k=24)
+    
+def instructorCourse():
+    courseIDs = list(range(1,41))
+    return random.sample(courseIDs,k=5)
+
+def student():
+    years = ["Prep","First","Second","Junior","Senior"]
+    lname = names.get_last_name()
+    fname = names.get_first_name()
+    year  = random.choice(years)
+    return lname,fname,year
+
+
+
+def instructor():
+    degrees = ["Teaching Assistant", "Professor","Assistant Professor",
             "Lecturer","Research Assistant","Postdoctoral","PhD Student"]
+    lname = names.get_last_name()
+    fname = names.get_first_name()
+    degree = random.choice(degrees)
+    return lname, fname, degree
 
-
-courses = ["Logic Design","Data Structures","Algorithms","Circuits I","Physics I",
+#id 1-40
+def course(id):
+    courses = ["Logic Design","Data Structures","Algorithms","Circuits I","Physics I",
         "Physics II","Mathematics I","Mathematics II","Civil Engineering","Presentation Skills",
         "Microprocessor","Computer Graphics","Intro DBMS","Project Management","Power Engineering",
         "Mathematics III","Software Engineering","Multimedia","Circuits II","Signals",
@@ -16,30 +39,6 @@ courses = ["Logic Design","Data Structures","Algorithms","Circuits I","Physics I
         "Computer Security","Consultation","Testing","Modeling","Pattern Recognition",
         "Web Development","Machine Learning","Image Processing","Compilers","OOP",
         ]
-courseIDs = list(range(1,41))
-
-def studentCourse(courseIDs):
-    return random.sample(courseIDs,k=24)
-    
-def instructorCourse(courseIDs):
-    return random.sample(courseIDs,k=5)
-
-def student(years):
-    lname = names.get_last_name()
-    fname = names.get_first_name()
-    year  = random.choice(years)
-    return lname,fname,year
-
-
-
-def instructor(degrees):
-    lname = names.get_last_name()
-    fname = names.get_first_name()
-    degree = random.choice(degrees)
-    return lname, fname, degree
-
-#id 1-40
-def course(courses,id):
     title = courses[id-1]
     lessonTitles = []
     lessonIDs = []
