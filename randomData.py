@@ -16,7 +16,7 @@ def student():
     lname = names.get_last_name()
     fname = names.get_first_name()
     year  = random.choice(years)
-    return lname,fname,year
+    return fname,lname,year
 
 
 
@@ -26,7 +26,7 @@ def instructor():
     lname = names.get_last_name()
     fname = names.get_first_name()
     degree = random.choice(degrees)
-    return lname, fname, degree
+    return fname, lname, degree
 
 #id 1-40
 def course(id):
@@ -47,4 +47,3 @@ def course(id):
         lessonTitles.append(lTitle)
         lessonIDs.append((id-1)*6+i+1)
     return title, lessonTitles, lessonIDs
-

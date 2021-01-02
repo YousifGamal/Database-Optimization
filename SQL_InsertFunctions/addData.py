@@ -1,5 +1,10 @@
+import sys,os
 from connect import Connect
-
+sys.path.append(os.path.abspath('../SQL_InsertFunctions'))
+currentdir = os.path.dirname(os.path.realpath(__file__))
+parentdir = os.path.dirname(currentdir)
+sys.path.append(parentdir)
+from randomData import *
 
 '''
     Students Queries
@@ -228,3 +233,45 @@ def showTeachs():
     
     cursorDB.close()
     connectDB.close()
+
+def insertQueries(instructorNum,studentNum,courseNum):
+    '''
+        fill the course,lesson,contain tables
+    '''
+    for courseID in range(1,courseNum+1):
+        title,lessonTitles,lessonIDs = course(courseID)
+        lessons = []
+        contains = []
+        for i in range(0,len(lessonTitles)):
+            lessons.append((lessonIDs[i],lessonTitles[i]))
+            contains.append((courseID,lessonIDs[i]))
+        insertCourse((courseID,title),0)
+        insertLesson(lessons,1)
+        insertContain(contains,1)
+    
+    '''
+        fill the student,learn table
+    '''
+    for studID in range(1,studentNum+1):
+        fname,lname,year = student()
+        insertStudent((studID,fname,lname,year),0)
+        learn = []
+        coursesRange = studentCourse()
+        for courseID in coursesRange:
+            learn.append((studID,courseID))
+        insertLearn(learn,1)
+
+    '''
+        fill the instructor,teach table
+    '''
+    for instructorID in range(1,instructorNum+1):
+        fname,lname,degree = instructor()
+        insertInstructor((instructorID,fname,lname,degree),0)
+        teach = []
+        coursesRange = instructorCourse()
+        for courseID in coursesRange:
+            teach.append((instructorID,courseID))
+        insertTeach(teach,1)
+    
+
+insertQueries(10,50,40)
