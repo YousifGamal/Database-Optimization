@@ -9,12 +9,7 @@ def insertStudent(items,oneOrMany):
     cursorDB = connectDB.cursor()
 
     sql = "INSERT INTO `student`(`student_id`, `first_name`, `last_name`, `year`) VALUES (%s,%s,%s,%s)"
-    '''
-    values = [
-        ('1','dummy','dummy','256'),
-        ('2','dummy','dummy','256')
-    ]
-    '''
+    
     values = items
     if oneOrMany == 0:
         cursorDB.execute(sql,values)
@@ -46,12 +41,7 @@ def insertInstructor(items,oneOrMany):
     cursorDB = connectDB.cursor()
 
     sql = "INSERT INTO `instructor`(`instructor_id`, `first_name`, `last_name`, `degree`) VALUES (%s,%s,%s,%s)"
-    '''
-    values = [
-        ('1','dummy','dummy','256'),
-        ('2','dummy','dummy','256')
-    ]
-    '''
+    
     values = items
     if oneOrMany == 0:
         cursorDB.execute(sql,values)
@@ -84,12 +74,7 @@ def insertCourse(items,oneOrMany):
     cursorDB = connectDB.cursor()
 
     sql = "INSERT INTO `course`(`course_id`, `title`) VALUES (%s,%s)"
-    '''
-    values = [
-        ('1','dummy','dummy','256'),
-        ('2','dummy','dummy','256')
-    ]
-    '''
+    
     values = items
     if oneOrMany == 0:
         cursorDB.execute(sql,values)
@@ -122,12 +107,7 @@ def insertLesson(items,oneOrMany):
     cursorDB = connectDB.cursor()
 
     sql = "INSERT INTO `lesson`(`lesson_id`, `title`) VALUES (%s,%s)"
-    '''
-    values = [
-        ('1','dummy','dummy','256'),
-        ('2','dummy','dummy','256')
-    ]
-    '''
+    
     values = items
     if oneOrMany == 0:
         cursorDB.execute(sql,values)
@@ -159,12 +139,7 @@ def insertContain(items,oneOrMany):
     cursorDB = connectDB.cursor()
 
     sql = "INSERT INTO `contains`(`course_id`, `lesson_id`) VALUES (%s,%s)"
-    '''
-    values = [
-        ('1','dummy','dummy','256'),
-        ('2','dummy','dummy','256')
-    ]
-    '''
+    
     values = items
     if oneOrMany == 0:
         cursorDB.execute(sql,values)
@@ -197,12 +172,7 @@ def insertLearn(items,oneOrMany):
     cursorDB = connectDB.cursor()
 
     sql = "INSERT INTO `learns`(`student_id`, `course_id`) VALUES (%s,%s)"
-    '''
-    values = [
-        ('1','dummy','dummy','256'),
-        ('2','dummy','dummy','256')
-    ]
-    '''
+    
     values = items
     if oneOrMany == 0:
         cursorDB.execute(sql,values)
@@ -235,12 +205,7 @@ def insertTeach(items,oneOrMany):
     cursorDB = connectDB.cursor()
 
     sql = "INSERT INTO `teaches`(`instructor_id`, `course_id`) VALUES (%s,%s)"
-    '''
-    values = [
-        ('1','dummy','dummy','256'),
-        ('2','dummy','dummy','256')
-    ]
-    '''
+    
     values = items
     if oneOrMany == 0:
         cursorDB.execute(sql,values)
@@ -263,6 +228,3 @@ def showTeachs():
     
     cursorDB.close()
     connectDB.close()
-
-#insertStudent([('4','ss','ss','688'),('5','ss','ss','688')],1)
-#showStudents()

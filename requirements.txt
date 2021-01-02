@@ -1,3 +1,4 @@
 names==0.3.0
 pymongo==3.11.2
-
+mysql-connector-python==8.0.22                                                                                                                    
+mysqlclient==1.4.4
