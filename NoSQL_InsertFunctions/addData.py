@@ -13,7 +13,8 @@ def createUserObj(items, oneOrMany=0):
             "lastname": items[2],
             "type": items[3],
             "degree": items[4],
-            "courses": items[5]}
+            "year":items[5],
+            "courses": items[6]}
 
         return object
     else:
@@ -25,7 +26,8 @@ def createUserObj(items, oneOrMany=0):
                 "lastname": item[2],
                 "type": item[3],
                 "degree": item[4],
-                "courses": item[5]}
+                "year":items[5],
+                "courses": item[6]}
             objArr.append(object)
         return objArr
 
@@ -98,15 +100,15 @@ def showCourses():
 
 
 # user_item = [random.randint(1, 100), "khaled", "Galal",
-#              random.randint(0, 1), "Degree" + str(random.randint(1, 5)), [{"courseId": random.randint(1, 5)}, {"courseId": random.randint(1, 5)}, {"courseId": random.randint(1, 5)}]]
+#              random.randint(0, 1), "Degree" + str(random.randint(1, 5)), "2020",[{"courseId": random.randint(1, 5)}, {"courseId": random.randint(1, 5)}, {"courseId": random.randint(1, 5)}]]
 # insertUser(user_item, 0)
 # showUsers()
 
 # 2 -  test to insert more than one item at users collections
 
 # user_items = [[random.randint(1, 100), "khaled", "Galal",
-#                random.randint(0, 1), "Degree" + str(random.randint(1, 5)), [{"courseId": random.randint(1, 5)}, {"courseId": random.randint(1, 5)}, {"courseId": random.randint(1, 5)}]], [random.randint(1, 100), "khaled", "Galal",
-#                                                                                                                                                                                            random.randint(0, 1), "Degree" + str(random.randint(1, 5)), [{"courseId": random.randint(1, 5)}, {"courseId": random.randint(1, 5)}, {"courseId": random.randint(1, 5)}]]]
+#                random.randint(0, 1), "Degree" + str(random.randint(1, 5)), "2020", [{"courseId": random.randint(1, 5)}, {"courseId": random.randint(1, 5)}, {"courseId": random.randint(1, 5)}]], [random.randint(1, 100), "khaled", "Galal",
+#                                                                                                                                                                                            random.randint(0, 1), "Degree" + str(random.randint(1, 5)), "2020", [{"courseId": random.randint(1, 5)}, {"courseId": random.randint(1, 5)}, {"courseId": random.randint(1, 5)}]]]
 # insertUser(user_items, 1)
 # showUsers()
 
