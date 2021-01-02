@@ -1,14 +1,14 @@
 import sys,os
-from connect import Connect
-from ..NoSQL_InsertFunctions import *
+from connect import ConnectMySQL
 sys.path.append(os.path.abspath('../SQL_InsertFunctions'))
 currentdir = os.path.dirname(os.path.realpath(__file__))
 parentdir = os.path.dirname(currentdir)
 sys.path.append(parentdir)
 from randomData import *
+from NoSQL_InsertFunctions.connect import *
+import NoSQL_InsertFunctions.addData as NoSQL
 
-
-connectDB = Connect()
+connectDB = ConnectMySQL()
 cursorDB = connectDB.cursor()
 '''
     Students Queries
@@ -171,7 +171,7 @@ def insertQueries(instructorNum,studentNum,courseNum):
             lessons.append((lessonIDs[i],lessonTitles[i]))
             contains.append((courseID,lessonIDs[i]))
 
-            lessonsArr.append({"lessonId" : lessonsArr[i] , "title" : lessonTitles[i]})
+            lessonsArr.append({"lessonId" : lessonIDs[i] , "title" : lessonTitles[i]})
 
         insertCourse((courseID,title),0)
         insertLesson(lessons,1)
@@ -180,7 +180,7 @@ def insertQueries(instructorNum,studentNum,courseNum):
         entry= [courseID ,title ,lessonsArr] 
         coursesArray.append(entry)
 
-    createCourserObj(coursesArray, oneOrMany=1)
+    NoSQL.insertCourse(coursesArray, oneOrMany=1)
     
     '''
         fill the student,learn table

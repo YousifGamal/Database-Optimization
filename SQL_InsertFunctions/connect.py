@@ -1,7 +1,7 @@
 import mysql.connector
 
 
-def Connect():
+def ConnectMySQL():
     mydb = mysql.connector.connect(
         host="localhost",
         user="newuser",
@@ -11,4 +11,3 @@ def Connect():
     #print(mydb.autocommit)
     
     return mydb
-Connect()

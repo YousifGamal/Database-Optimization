@@ -1,9 +1,16 @@
-from connect import Connect
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from pprint import pprint
 import random
 
+
+dbUrl = "mongodb://localhost:27017"
+
+
+class Connect(object):
+    @staticmethod
+    def get_connection():
+        return MongoClient(dbUrl)
 
 def createUserObj(items, oneOrMany=0):
     if oneOrMany == 0:
@@ -99,10 +106,10 @@ def showCourses():
 # 1 - test to insert one item at users collections
 
 
-# user_item = [random.randint(1, 100), "khaled", "Galal",
-#              random.randint(0, 1), "Degree" + str(random.randint(1, 5)), "2020",[{"courseId": random.randint(1, 5)}, {"courseId": random.randint(1, 5)}, {"courseId": random.randint(1, 5)}]]
-# insertUser(user_item, 0)
-# showUsers()
+user_item = [random.randint(1, 100), "khaled", "Galal",
+              random.randint(0, 1), "Degree" + str(random.randint(1, 5)), "2020",[{"courseId": random.randint(1, 5)}, {"courseId": random.randint(1, 5)}, {"courseId": random.randint(1, 5)}]]
+insertUser(user_item, 0)
+showUsers()
 
 # 2 -  test to insert more than one item at users collections
 
