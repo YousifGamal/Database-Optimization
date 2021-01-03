@@ -95,7 +95,7 @@ CREATE TABLE IF NOT EXISTS `college`.`teaches` (
     REFERENCES `college`.`instructor` (`instructor_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `course_id`
+  CONSTRAINT `course_id_2`
     FOREIGN KEY (`course_id`)
     REFERENCES `college`.`course` (`course_id`)
     ON DELETE NO ACTION
@@ -111,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `college`.`contains` (
   `lesson_id` INT NOT NULL,
   PRIMARY KEY (`course_id`, `lesson_id`),
   INDEX `lesson_id_idx` (`lesson_id` ASC),
-  CONSTRAINT `course_id`
+  CONSTRAINT `course_id_3`
     FOREIGN KEY (`course_id`)
     REFERENCES `college`.`course` (`course_id`)
     ON DELETE NO ACTION
