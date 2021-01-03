@@ -12,6 +12,7 @@ class Connect(object):
     def get_connection():
         return MongoClient(dbUrl)
 
+
 def createUserObj(items, oneOrMany=0):
     if oneOrMany == 0:
         object = {
@@ -20,7 +21,7 @@ def createUserObj(items, oneOrMany=0):
             "lastname": items[2],
             "type": items[3],
             "degree": items[4],
-            "year":items[5],
+            "year": items[5],
             "courses": items[6]}
 
         return object
@@ -31,9 +32,9 @@ def createUserObj(items, oneOrMany=0):
                 "id": item[0],
                 "fname": item[1],
                 "lastname": item[2],
-                "type": item[3],
+                "type": item[3],   # 0 for student and 1 for instructor
                 "degree": item[4],
-                "year":items[5],
+                "year": items[5],
                 "courses": item[6]}
             objArr.append(object)
         return objArr
@@ -107,7 +108,7 @@ def showCourses():
 
 
 user_item = [random.randint(1, 100), "khaled", "Galal",
-              random.randint(0, 1), "Degree" + str(random.randint(1, 5)), "2020",[{"courseId": random.randint(1, 5)}, {"courseId": random.randint(1, 5)}, {"courseId": random.randint(1, 5)}]]
+             random.randint(0, 1), "Degree" + str(random.randint(1, 5)), "2020", [{"courseId": random.randint(1, 5)}, {"courseId": random.randint(1, 5)}, {"courseId": random.randint(1, 5)}]]
 insertUser(user_item, 0)
 showUsers()
 
