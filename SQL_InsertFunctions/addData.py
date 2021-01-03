@@ -1,5 +1,6 @@
 import sys,os
 from connect import Connect
+from ..NoSQL_InsertFunctions import *
 sys.path.append(os.path.abspath('../SQL_InsertFunctions'))
 currentdir = os.path.dirname(os.path.realpath(__file__))
 parentdir = os.path.dirname(currentdir)
@@ -157,16 +158,29 @@ def insertQueries(instructorNum,studentNum,courseNum):
     '''
         fill the course,lesson,contain tables
     '''
+    coursesArray = [] # array that hold courses object
+  
     for courseID in range(1,courseNum+1):
         title,lessonTitles,lessonIDs = course(courseID)
         lessons = []
         contains = []
+
+        
+        lessonsArr = []
         for i in range(0,len(lessonTitles)):
             lessons.append((lessonIDs[i],lessonTitles[i]))
             contains.append((courseID,lessonIDs[i]))
+
+            lessonsArr.append({"lessonId" : lessonsArr[i] , "title" : lessonTitles[i]})
+
         insertCourse((courseID,title),0)
         insertLesson(lessons,1)
         insertContain(contains,1)
+
+        entry= [courseID ,title ,lessonsArr] 
+        coursesArray.append(entry)
+
+    createCourserObj(coursesArray, oneOrMany=1)
     
     '''
         fill the student,learn table
