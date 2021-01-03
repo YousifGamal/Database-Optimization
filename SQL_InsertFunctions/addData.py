@@ -245,4 +245,5 @@ def insertQueries(instructorNum, studentNum, courseNum):
     connectDB.close()
 
 
-insertQueries(10, 50, 40)
+#insertQueries(10, 50, 40)
+insertQueries(100, 40000, 40)

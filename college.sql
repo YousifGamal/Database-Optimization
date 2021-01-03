@@ -55,7 +55,7 @@ ENGINE = InnoDB;
 -- Table `college`.`lesson`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `college`.`lesson` (
-  `lesson_id` INT NOT NULL,
+  `lesson_id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(50) NULL,
   PRIMARY KEY (`lesson_id`))
 ENGINE = InnoDB;

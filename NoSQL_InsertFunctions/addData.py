@@ -34,7 +34,7 @@ def createUserObj(items, oneOrMany=0):
                 "lastname": item[2],
                 "type": item[3],   # 0 for student and 1 for instructor
                 "degree": item[4],
-                "year": items[5],
+                "year": item[5],
                 "courses": item[6]}
             objArr.append(object)
         return objArr
@@ -107,10 +107,10 @@ def showCourses():
 # 1 - test to insert one item at users collections
 
 
-user_item = [random.randint(1, 100), "khaled", "Galal",
-             random.randint(0, 1), "Degree" + str(random.randint(1, 5)), "2020", [{"courseId": random.randint(1, 5)}, {"courseId": random.randint(1, 5)}, {"courseId": random.randint(1, 5)}]]
-insertUser(user_item, 0)
-showUsers()
+#user_item = [random.randint(1, 100), "khaled", "Galal",
+#             random.randint(0, 1), "Degree" + str(random.randint(1, 5)), "2020", [{"courseId": random.randint(1, 5)}, {"courseId": random.randint(1, 5)}, {"courseId": random.randint(1, 5)}]]
+#insertUser(user_item, 0)
+#showUsers()
 
 # 2 -  test to insert more than one item at users collections
 
