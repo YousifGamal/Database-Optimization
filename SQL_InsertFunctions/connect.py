@@ -5,7 +5,7 @@ def ConnectMySQL():
     mydb = mysql.connector.connect(
         host="localhost",
         user="Gellesh",
-        password="khaledG123",
+        password="password",
         database="college"
     )
     #print(mydb.autocommit)
