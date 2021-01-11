@@ -1,2 +1,4 @@
 SQL_InsertFunctions/__pycache__/*
 NoSQL_InsertFunctions/__pycache__/*
+SQL_InsertFunctions/connect.py
+.vscode/settings.json
