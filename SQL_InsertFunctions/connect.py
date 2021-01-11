@@ -1,12 +1,12 @@
 import mysql.connector
 
 
-def ConnectMySQL():
+def ConnectMySQL(database_schema):
     mydb = mysql.connector.connect(
         host="localhost",
         user="newuser",
         password="password",
-        database="college"
+        database=database_schema
     )
     #print(mydb.autocommit)
     

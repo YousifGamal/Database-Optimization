@@ -8,7 +8,10 @@ sys.path.append(parentdir)
 from randomData import *
 from NoSQL_InsertFunctions.connect import *
 import NoSQL_InsertFunctions.addData as NoSQL
-connectDB = ConnectMySQL()
+
+#initialize the schema we are willing to connect to
+#values of the schema are : college,college_10k,college_100k,college_1M ; lowercase k not capital take care :D
+connectDB = ConnectMySQL("college_10k")
 cursorDB = connectDB.cursor()
 '''
     Students Queries
@@ -171,7 +174,80 @@ def showTeachs():
         print(row)
 
 
-def insertQueries(instructorNum, studentNum, courseNum):
+def insertQueries(instructorNum, studentNum, courseNum,threshold):
+    '''
+        fill the course,lesson,contain tables
+    
+    coursesArray = []  # array that hold courses object
+
+    for courseID in range(1, courseNum+1):
+        title, lessonTitles, lessonIDs = course(courseID)
+        lessons = []
+        contains = []
+
+        lessonsArr = []
+        for i in range(0, len(lessonTitles)):
+            lessons.append((lessonIDs[i], lessonTitles[i]))
+            contains.append((courseID, lessonIDs[i]))
+
+            lessonsArr.append(
+                {"lessonId": lessonIDs[i], "title": lessonTitles[i]})
+
+        insertCourse((courseID, title), 0)
+        insertLesson(lessons, 1)
+        insertContain(contains, 1)
+
+        entry = [courseID, title, lessonsArr]
+        coursesArray.append(entry)
+
+    NoSQL.insertCourse(coursesArray, oneOrMany=1)
+    connectDB.commit()
+    '''
+
+    '''
+        fill the student,learn table
+    '''
+
+    usersArray = []  # array that hold users object
+
+    for studID in range(studentNum, studentNum+4*threshold):
+        fname, lname, year = student()
+        insertStudent((studID, fname, lname, year), 0)
+        learn = []
+        coursesRange = studentCourse()
+
+        courses = []
+        for courseID in coursesRange:
+            learn.append((studID, courseID))
+            courses.append({"courseId": courseID})
+        insertLearn(learn, 1)
+
+        usersArray.append([studID, fname, lname, 0, "", year, courses])
+    NoSQL.insertUser(usersArray, oneOrMany=1)
+    connectDB.commit()
+
+    '''
+        fill the instructor,teach table
+    '''
+    usersArray = []  # array that hold users object
+    for instructorID in range(instructorNum, int(instructorNum+0.1*threshold)):
+        fname, lname, degree = instructor()
+        insertInstructor((instructorID, fname, lname, degree), 0)
+        teach = []
+        coursesRange = instructorCourse()
+
+        courses = []
+        for courseID in coursesRange:
+            teach.append((instructorID, courseID))
+            courses.append({"courseId": courseID})
+        insertTeach(teach, 1)
+
+        usersArray.append([instructorID, fname, lname, 1, degree, "", courses])
+
+    NoSQL.insertUser(usersArray, oneOrMany=1)
+    connectDB.commit()
+
+def insertCoursesLessons(courseNum):
     '''
         fill the course,lesson,contain tables
     '''
@@ -198,52 +274,10 @@ def insertQueries(instructorNum, studentNum, courseNum):
         coursesArray.append(entry)
 
     NoSQL.insertCourse(coursesArray, oneOrMany=1)
-
-    '''
-        fill the student,learn table
-    '''
-
-    usersArray = []  # array that hold users object
-
-    for studID in range(1, studentNum+1):
-        fname, lname, year = student()
-        insertStudent((studID, fname, lname, year), 0)
-        learn = []
-        coursesRange = studentCourse()
-
-        courses = []
-        for courseID in coursesRange:
-            learn.append((studID, courseID))
-            courses.append({"courseId": courseID})
-        insertLearn(learn, 1)
-
-        usersArray.append([studID, fname, lname, 0, "", year, courses])
-    NoSQL.insertUser(usersArray, oneOrMany=1)
-
-    '''
-        fill the instructor,teach table
-    '''
-    usersArray = []  # array that hold users object
-    for instructorID in range(1, instructorNum+1):
-        fname, lname, degree = instructor()
-        insertInstructor((instructorID, fname, lname, degree), 0)
-        teach = []
-        coursesRange = instructorCourse()
-
-        courses = []
-        for courseID in coursesRange:
-            teach.append((instructorID, courseID))
-            courses.append({"courseId": courseID})
-        insertTeach(teach, 1)
-
-        usersArray.append([instructorID, fname, lname, 1, degree, "", courses])
-
-    NoSQL.insertUser(usersArray, oneOrMany=1)
-
     connectDB.commit()
-    cursorDB.close()
-    connectDB.close()
 
-
+insertCoursesLessons(40)
+insertQueries(1,1,40,int(10000/100))
+cursorDB.close()
+connectDB.close()
 #insertQueries(10, 50, 40)
-insertQueries(100, 40000, 40)

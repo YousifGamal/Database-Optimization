@@ -44,7 +44,7 @@ def insertUser(items, oneOrMany=0):
 
     connection = Connect.get_connection()
 
-    db = connection.projectDB
+    db = connection.projectDB_10k
 
     obj = createUserObj(items, oneOrMany)
 
@@ -57,7 +57,7 @@ def insertUser(items, oneOrMany=0):
 def showUsers():
     connection = Connect.get_connection()
 
-    db = connection.projectDB
+    db = connection.projectDB_10k
     cursor = db.users.find({})
     for x in cursor:
         pprint(x)
@@ -86,7 +86,7 @@ def insertCourse(items, oneOrMany=0):
 
     connection = Connect.get_connection()
 
-    db = connection.projectDB
+    db = connection.projectDB_10k
 
     obj = createCourserObj(items, oneOrMany)
 
@@ -99,7 +99,7 @@ def insertCourse(items, oneOrMany=0):
 def showCourses():
     connection = Connect.get_connection()
 
-    db = connection.projectDB
+    db = connection.projectDB_10k
     cursor = db.courses.find({})
     for x in cursor:
         print(x)

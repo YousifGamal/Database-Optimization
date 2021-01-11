@@ -8,19 +8,19 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 -- Schema mydb
 -- -----------------------------------------------------
 -- -----------------------------------------------------
--- Schema college
+-- Schema college_10k
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema college
+-- Schema college_10k
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `college` ;
-USE `college` ;
+CREATE SCHEMA IF NOT EXISTS `college_10k` ;
+USE `college_10k` ;
 
 -- -----------------------------------------------------
--- Table `college`.`student`
+-- Table `college_10k`.`student`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `college`.`student` (
+CREATE TABLE IF NOT EXISTS `college_10k`.`student` (
   `student_id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(20) NULL,
   `last_name` VARCHAR(20) NULL,
@@ -30,9 +30,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `college`.`instructor`
+-- Table `college_10k`.`instructor`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `college`.`instructor` (
+CREATE TABLE IF NOT EXISTS `college_10k`.`instructor` (
   `instructor_id` INT NOT NULL AUTO_INCREMENT,
   `first_name` VARCHAR(20) NULL,
   `last_name` VARCHAR(20) NULL,
@@ -42,9 +42,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `college`.`course`
+-- Table `college_10k`.`course`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `college`.`course` (
+CREATE TABLE IF NOT EXISTS `college_10k`.`course` (
   `course_id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(45) NULL,
   PRIMARY KEY (`course_id`))
@@ -52,9 +52,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `college`.`lesson`
+-- Table `college_10k`.`lesson`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `college`.`lesson` (
+CREATE TABLE IF NOT EXISTS `college_10k`.`lesson` (
   `lesson_id` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(50) NULL,
   PRIMARY KEY (`lesson_id`))
@@ -62,63 +62,63 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `college`.`learns`
+-- Table `college_10k`.`learns`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `college`.`learns` (
+CREATE TABLE IF NOT EXISTS `college_10k`.`learns` (
   `student_id` INT NOT NULL,
   `course_id` INT NOT NULL,
   PRIMARY KEY (`student_id`, `course_id`),
   INDEX `course_id_idx` (`course_id` ASC),
   CONSTRAINT `student_id`
     FOREIGN KEY (`student_id`)
-    REFERENCES `college`.`student` (`student_id`)
+    REFERENCES `college_10k`.`student` (`student_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `course_id`
     FOREIGN KEY (`course_id`)
-    REFERENCES `college`.`course` (`course_id`)
+    REFERENCES `college_10k`.`course` (`course_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `college`.`teaches`
+-- Table `college_10k`.`teaches`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `college`.`teaches` (
+CREATE TABLE IF NOT EXISTS `college_10k`.`teaches` (
   `instructor_id` INT NOT NULL,
   `course_id` INT NOT NULL,
   PRIMARY KEY (`instructor_id`, `course_id`),
   INDEX `course_id_idx` (`course_id` ASC),
   CONSTRAINT `instructor_id`
     FOREIGN KEY (`instructor_id`)
-    REFERENCES `college`.`instructor` (`instructor_id`)
+    REFERENCES `college_10k`.`instructor` (`instructor_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `course_id_2`
     FOREIGN KEY (`course_id`)
-    REFERENCES `college`.`course` (`course_id`)
+    REFERENCES `college_10k`.`course` (`course_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `college`.`contains`
+-- Table `college_10k`.`contains`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `college`.`contains` (
+CREATE TABLE IF NOT EXISTS `college_10k`.`contains` (
   `course_id` INT NOT NULL,
   `lesson_id` INT NOT NULL,
   PRIMARY KEY (`course_id`, `lesson_id`),
   INDEX `lesson_id_idx` (`lesson_id` ASC),
   CONSTRAINT `course_id_3`
     FOREIGN KEY (`course_id`)
-    REFERENCES `college`.`course` (`course_id`)
+    REFERENCES `college_10k`.`course` (`course_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `lesson_id`
     FOREIGN KEY (`lesson_id`)
-    REFERENCES `college`.`lesson` (`lesson_id`)
+    REFERENCES `college_10k`.`lesson` (`lesson_id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
